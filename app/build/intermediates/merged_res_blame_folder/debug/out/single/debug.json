@@ -1,0 +1,90 @@
+[
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_activity_cadastro.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/activity_cadastro.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_fragment_cardapio.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/fragment_cardapio.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/drawable_ic_carrinho_nav.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/drawable/ic_carrinho_nav.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_layout_header.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/layout_header.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_activity_detail.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/activity_detail.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_item_product.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/item_product.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_item_coupon.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/item_coupon.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_fragment_cupons.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/fragment_cupons.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_fragment_carrinho.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/fragment_carrinho.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_fragment_home.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/drawable_ofertakfc.jpeg.flat",
+        "source": "com.example.kfcrena.app-main-34:/drawable/ofertakfc.jpeg"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/drawable_ic_home.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/drawable_logokfc.png.flat",
+        "source": "com.example.kfcrena.app-main-34:/drawable/logokfc.png"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_item_carrinho.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/item_carrinho.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_fragment_lojas.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/fragment_lojas.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/drawable_ic_location.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/drawable/ic_location.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/layout_activity_main.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/drawable_ic_cupons_nav.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/drawable/ic_cupons_nav.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/drawable_ic_arrow_back.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/drawable/ic_arrow_back.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/drawable_bg_coupon_ticket.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/drawable/bg_coupon_ticket.xml"
+    },
+    {
+        "merged": "com.example.kfcrena.app-merged_res-32:/drawable_ic_menu.xml.flat",
+        "source": "com.example.kfcrena.app-main-34:/drawable/ic_menu.xml"
+    }
+]

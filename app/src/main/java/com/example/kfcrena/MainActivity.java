@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             bottomNav.setSelectedItemId(R.id.nav_home);
         }
+
+        findViewById(R.id.btnMainCart).setOnClickListener(v -> setSelectedTab(R.id.nav_carrinho));
     }
 
     public void setSelectedTab(int itemId) {

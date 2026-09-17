@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:paddingBottom="80dp">
 
-        <include layout="@layout/layout_header" />
+        <!-- O cabeçalho agora é global na MainActivity -->
 
         <!-- Banner Principal -->
         <androidx.cardview.widget.CardView
@@ -70,23 +70,27 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="3dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:background="?attr/selectableItemBackground">
+                    android:background="@color/kfc_red"
+                    android:clickable="true"
+                    android:focusable="true">
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@drawable/ic_menu"
-                        app:tint="@color/kfc_red"
+                        app:tint="@color/kfc_white"
                         android:contentDescription="@null" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:text="@string/menu_cardapio"
+                        android:textColor="@color/kfc_white"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -98,23 +102,27 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardElevation="3dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:background="?attr/selectableItemBackground">
+                    android:background="@color/kfc_black"
+                    android:clickable="true"
+                    android:focusable="true">
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@drawable/ic_cupons_nav"
-                        app:tint="@color/kfc_red"
+                        app:tint="@color/kfc_white"
                         android:contentDescription="@null" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:text="@string/menu_cupons"
+                        android:textColor="@color/kfc_white"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -138,7 +146,9 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:paddingHorizontal="12dp"
-            android:paddingVertical="8dp" />
+            android:paddingVertical="8dp"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:listitem="@layout/item_product" />
 
     </LinearLayout>
 </ScrollView>

@@ -6,7 +6,7 @@
     android:background="@color/surface_background"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_header" />
+    <!-- O cabeçalho agora é global na MainActivity -->
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -28,7 +28,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Para Compartilhar"
-                android:checked="true" />
+                android:checked="true"
+                app:chipBackgroundColor="@color/kfc_red"
+                app:chipStrokeColor="@color/kfc_red"
+                android:textColor="@color/kfc_white" />
 
             <com.google.android.material.chip.Chip
                 style="@style/Widget.Material3.Chip.Filter"
@@ -56,6 +59,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="16dp" />
+        android:paddingBottom="16dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:listitem="@layout/item_product" />
 
 </LinearLayout>

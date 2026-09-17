@@ -6,7 +6,7 @@
     android:background="@color/surface_background"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_header" />
+    <!-- O cabeçalho agora é global na MainActivity -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCart"
@@ -15,7 +15,9 @@
         android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp" />
+        android:paddingBottom="16dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:listitem="@layout/item_carrinho" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -61,6 +63,9 @@
                 android:layout_height="64dp"
                 android:text="FINALIZAR PEDIDO"
                 android:textSize="16sp"
+                android:backgroundTint="@color/kfc_red"
+                android:textColor="@color/kfc_white"
+                android:textStyle="bold"
                 app:cornerRadius="16dp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

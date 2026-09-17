@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/surface_background">
+    android:background="@color/surface_background"
+    android:orientation="vertical">
 
-    <include layout="@layout/layout_header" />
+    <!-- O cabeçalho agora é global na MainActivity -->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -17,37 +17,28 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Map Placeholder -->
+            <!-- Map Container -->
             <FrameLayout
                 android:id="@+id/mapContainer"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:background="@color/divider_color">
 
-                <ImageView
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@android:drawable/ic_menu_mapmode"
-                    android:alpha="0.3"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Mapa (Google Maps API em breve)"
-                    android:textColor="@color/text_secondary"
-                    android:textStyle="italic"/>
+                    android:layout_height="match_parent" />
             </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lojas próximas a você"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_margin="20dp"
-                android:textColor="@color/text_primary"/>
+                android:text="Lojas próximas a você"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,34 +51,38 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="16dp"
-                    app:strokeWidth="0dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:strokeWidth="0dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="20dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="KFC - Shopping Rena"
-                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
                             android:textSize="18sp"
-                            android:textColor="@color/text_primary"/>
+                            android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="Av. Principal, 1000 - Centro"
-                            android:textColor="@color/text_secondary"
-                            android:layout_marginTop="4dp"/>
+                            android:textColor="@color/text_secondary" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:text="Aberto até 22:00"
                             android:textColor="@color/success_green"
                             android:textSize="13sp"
-                            android:layout_marginTop="8dp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -96,34 +91,38 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
                     app:cardCornerRadius="16dp"
-                    app:strokeWidth="0dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:strokeWidth="0dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="20dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="KFC - Drive Thru Leste"
-                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
                             android:textSize="18sp"
-                            android:textColor="@color/text_primary"/>
+                            android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="Rua das Galinhas, 50 - Bairro Leste"
-                            android:textColor="@color/text_secondary"
-                            android:layout_marginTop="4dp"/>
+                            android:textColor="@color/text_secondary" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:text="Aberto 24h"
                             android:textColor="@color/success_green"
                             android:textSize="13sp"
-                            android:layout_marginTop="8dp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 

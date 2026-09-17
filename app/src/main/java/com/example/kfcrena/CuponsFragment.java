@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,9 +27,7 @@ public class CuponsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cupons, container, false);
 
-        // Configurar Header
-        TextView tvTitle = view.findViewById(R.id.tvHeaderTitle);
-        if (tvTitle != null) tvTitle.setText(getString(R.string.title_cupons_header));
+        // Header agora é global
 
         rvCupons = view.findViewById(R.id.rvCupons);
         rvCupons.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -48,7 +46,7 @@ public class CuponsFragment extends Fragment {
 
     private void loadCupons() {
         couponList = new ArrayList<>();
-        couponList.add(new KfcItem(getString(R.string.coupon_free_shipping), getString(R.string.coupon_free_shipping_desc), R.drawable.fretegrats, "FRETEKFC"));
-        couponList.add(new KfcItem(getString(R.string.coupon_2_buckets), getString(R.string.coupon_2_buckets_desc), R.drawable.cupombalde, "BALDE50"));
+        couponList.add(new KfcItem(getString(R.string.coupon_free_shipping), getString(R.string.coupon_free_shipping_desc), R.drawable.cupom1kfc, "FRETEKFC"));
+        couponList.add(new KfcItem(getString(R.string.coupon_2_buckets), getString(R.string.coupon_2_buckets_desc), R.drawable.frangokfc, "BALDE50"));
     }
 }

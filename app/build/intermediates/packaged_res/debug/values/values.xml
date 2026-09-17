@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="black">#FF000000</color>
+    <color name="divider_color">#E0E0E0</color>
+    <color name="error_red">#D32F2F</color>
+    <color name="kfc_black">#000000</color>
+    <color name="kfc_dark_grey">#666666</color>
+    <color name="kfc_grey">#EEEEEE</color>
+    <color name="kfc_red">#E4002B</color>
+    <color name="kfc_red_dark">#B00020</color>
+    <color name="kfc_white">#FFFFFF</color>
+    <color name="success_green">#2E7D32</color>
+    <color name="surface_background">#F8F9FA</color>
+    <color name="surface_card">#FFFFFF</color>
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#757575</color>
+    <color name="warning_orange">#F57C00</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">KFC Rena</string>
+    <string name="banner_subtitle">Confira as ofertas de hoje!</string>
+    <string name="banner_title">Bateu a fome?</string>
+    <string name="btn_add_to_cart">ADICIONAR AO CARRINHO</string>
+    <string name="btn_register_now">CADASTRAR AGORA</string>
+    <string name="coupon_2_buckets">2 Baldes por R$ 50</string>
+    <string name="coupon_2_buckets_desc">Válido em lojas físicas. Aproveite o sabor clássico.</string>
+    <string name="coupon_free_shipping">Frete Grátis</string>
+    <string name="coupon_free_shipping_desc">Aproveite frete grátis em pedidos acima de R$ 30 pelo App KFC!</string>
+    <string name="desc_balde_tradicional">O clássico do KFC: pedaços de frango suculentos e crocantes.</string>
+    <string name="desc_batata_grande">Batatas fritas crocantes por fora e macias por dentro.</string>
+    <string name="desc_kentucky_sandwich">Sanduíche premium com filé de frango empanado, maionese e picles.</string>
+    <string name="desc_main_offer">Banner de oferta principal</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_full_name">Nome Completo</string>
+    <string name="hint_password">Senha</string>
+    <string name="hint_phone">Telefone</string>
+    <string name="item_balde_tradicional">Balde Tradicional</string>
+    <string name="item_batata_grande">Batata Frita Grande</string>
+    <string name="item_kentucky_sandwich">Kentucky Chicken Sandwich</string>
+    <string name="menu_cardapio">Cardápio</string>
+    <string name="menu_cupons">Cupons</string>
+    <string name="msg_added_to_cart">Adicionado ao carrinho!</string>
+    <string name="section_highlights">Destaques da Semana</string>
+    <string name="section_more_coupons">Mais Cupons para Você</string>
+    <string name="section_quick_access">Acesso Rápido</string>
+    <string name="title_cardapio">Cardápio KFC</string>
+    <string name="title_create_account">Criar Conta</string>
+    <string name="title_cupons_header">Meus Cupons</string>
+    <string name="title_home">Início</string>
+    <string name="tv_already_have_account">Já tem conta? Entrar</string>
+    <style name="ShapeAppearance.KFC.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="ShapeAppearance.KFC.TopRounded" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+    <style name="Theme.KFCRena" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/kfc_red</item>
+        <item name="colorOnPrimary">@color/kfc_white</item>
+        <item name="colorPrimaryContainer">#FFEBEE</item>
+        <item name="colorOnPrimaryContainer">@color/kfc_red_dark</item>
+
+        
+        <item name="colorSecondary">@color/kfc_black</item>
+        <item name="colorOnSecondary">@color/kfc_white</item>
+
+        
+        <item name="android:windowBackground">@color/surface_background</item>
+        <item name="colorSurface">@color/surface_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorSurfaceVariant">@color/divider_color</item>
+
+        
+        <item name="android:statusBarColor">@color/kfc_red</item>
+        <item name="android:windowLightStatusBar" ns1:targetApi="m">false</item>
+
+        
+        <item name="materialButtonStyle">@style/Widget.KFC.Button</item>
+        <item name="cardViewStyle">@style/Widget.KFC.Card</item>
+    </style>
+    <style name="Widget.KFC.Button" parent="Widget.Material3.Button">
+        <item name="shapeAppearance">@style/ShapeAppearance.KFC.Medium</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Widget.KFC.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+</resources>

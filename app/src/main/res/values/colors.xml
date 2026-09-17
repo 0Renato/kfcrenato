@@ -2,15 +2,15 @@
 <resources>
     <!-- KFC Official Branding -->
     <color name="kfc_red">#E4002B</color>
-    <color name="kfc_red_dark">#B00020</color>
-    <color name="kfc_black">#000000</color>
+    <color name="kfc_red_dark">#A6001E</color>
+    <color name="kfc_black">#111111</color>
     <color name="kfc_white">#FFFFFF</color>
 
     <!-- Neutral Palette for Modern UI -->
-    <color name="surface_background">#F8F9FA</color>
+    <color name="surface_background">#F4F4F4</color>
     <color name="surface_card">#FFFFFF</color>
-    <color name="text_primary">#1A1A1A</color>
-    <color name="text_secondary">#757575</color>
+    <color name="text_primary">#111111</color>
+    <color name="text_secondary">#555555</color>
     <color name="divider_color">#E0E0E0</color>
 
     <!-- Status Colors -->

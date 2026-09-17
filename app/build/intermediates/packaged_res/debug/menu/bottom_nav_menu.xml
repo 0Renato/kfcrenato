@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Início" />
+    <item
+        android:id="@+id/nav_cardapio"
+        android:icon="@drawable/ic_menu"
+        android:title="Cardápio" />
+    <item
+        android:id="@+id/nav_cupons"
+        android:icon="@drawable/ic_cupons_nav"
+        android:title="Cupons" />
+    <item
+        android:id="@+id/nav_carrinho"
+        android:icon="@drawable/ic_carrinho_nav"
+        android:title="Carrinho" />
+    <item
+        android:id="@+id/nav_lojas"
+        android:icon="@drawable/ic_location"
+        android:title="Lojas" />
+</menu>
