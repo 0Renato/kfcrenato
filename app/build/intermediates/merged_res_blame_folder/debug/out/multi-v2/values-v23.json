@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.kfcrena.app-mergeDebugResources-30:/values-v23/values-v23.xml",
+            "outputFile": "com.example.kfcrena.app-mergeDebugResources-34:/values-v23/values-v23.xml",
             "map": [
                 {
                     "source": "/Users/senai/.gradle/caches/transforms-3/ab620463462e0f419f905989207689fa/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",

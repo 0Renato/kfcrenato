@@ -1,133 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/surface_background">
 
-    <include layout="@layout/layout_header" />
-
-    <androidx.core.widget.NestedScrollView
+    <!-- Fragmento do Google Maps -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".LojasFragment" />
+
+    <!-- Card informativo com botão e coordenadas GPS -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="top"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@android:color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Map Placeholder -->
-            <FrameLayout
-                android:id="@+id/mapContainer"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:background="@color/divider_color">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@android:drawable/ic_menu_mapmode"
-                    android:alpha="0.3"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Mapa (Google Maps API em breve)"
-                    android:textColor="@color/text_secondary"
-                    android:textStyle="italic"/>
-            </FrameLayout>
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
+                android:id="@+id/tvLojasTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lojas próximas a você"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_margin="20dp"
-                android:textColor="@color/text_primary"/>
+                android:text="@string/lojas_title"
+                android:textColor="@color/kfc_red"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvLojasStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/lojas_status_loading"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="13sp" />
+
+            <!-- TextView que exibe as Coordenadas GPS (Lat: ... | Long: ...) -->
+            <TextView
+                android:id="@+id/textGps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="16dp">
+                android:layout_marginTop="8dp"
+                android:text="@string/gps_aguardando"
+                android:textColor="@color/kfc_black"
+                android:textSize="13sp"
+                android:textStyle="italic" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="16dp"
-                    app:strokeWidth="0dp"
-                    app:cardElevation="2dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="KFC - Shopping Rena"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:textColor="@color/text_primary"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Av. Principal, 1000 - Centro"
-                            android:textColor="@color/text_secondary"
-                            android:layout_marginTop="4dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Aberto até 22:00"
-                            android:textColor="@color/success_green"
-                            android:textSize="13sp"
-                            android:layout_marginTop="8dp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+            <!-- Botão para obter/atualizar a localização -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPegarLocalizacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/btn_pegar_localizacao"
+                android:textSize="14sp"
+                app:icon="@drawable/ic_location"
+                app:iconGravity="textStart" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    app:cardCornerRadius="16dp"
-                    app:strokeWidth="0dp"
-                    app:cardElevation="2dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="KFC - Drive Thru Leste"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:textColor="@color/text_primary"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rua das Galinhas, 50 - Bairro Leste"
-                            android:textColor="@color/text_secondary"
-                            android:layout_marginTop="4dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Aberto 24h"
-                            android:textColor="@color/success_green"
-                            android:textSize="13sp"
-                            android:layout_marginTop="8dp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

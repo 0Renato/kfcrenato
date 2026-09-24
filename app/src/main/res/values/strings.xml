@@ -41,4 +41,21 @@
     <!-- Detalhes -->
     <string name="btn_add_to_cart">ADICIONAR AO CARRINHO</string>
     <string name="msg_added_to_cart">Adicionado ao carrinho!</string>
+
+    <!-- Lojas -->
+    <string name="lojas_title">Restaurantes KFC Próximos</string>
+    <string name="lojas_status_loading">Buscando unidades do KFC na região…</string>
+    <string name="lojas_status_found">%1$d unidade(s) do KFC encontrada(s) na sua área</string>
+    <string name="lojas_status_not_found">Nenhuma loja KFC encontrada próxima.</string>
+    <string name="gps_aguardando">Aguardando busca de GPS…</string>
+    <string name="btn_pegar_localizacao">OBTER MINHA LOCALIZAÇÃO</string>
+
+    <!-- Carrinho e Cupons -->
+    <string name="hint_coupon_code">Cupom de Desconto</string>
+    <string name="btn_apply_coupon">APLICAR</string>
+    <string name="btn_remove_coupon">REMOVER</string>
+    <string name="lbl_subtotal">Subtotal</string>
+    <string name="lbl_discount">Desconto</string>
+    <string name="lbl_discount_with_code">Desconto (%1$s)</string>
+    <string name="lbl_total">Total Final</string>
 </resources>
