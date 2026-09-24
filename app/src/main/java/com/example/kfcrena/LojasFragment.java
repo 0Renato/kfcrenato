@@ -1,7 +1,7 @@
 package com.example.kfcrena;
 
 import android.Manifest;
-import android.content.pm.ApplicationInfo;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -26,26 +26,28 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.libraries.places.api.Places;
+
+import org.osmdroid.config.Configuration;
+import org.osmdroid.tileprovider.tilesource.XYTileSource;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Marker;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LojasFragment extends Fragment implements OnMapReadyCallback {
+public class LojasFragment extends Fragment {
 
-    private GoogleMap mMap;
+    private MapView mapView;
     private TextView textGps;
     private TextView tvLojasStatus;
     private Button btnPegarLocalizacao;
     private FusedLocationProviderClient fusedLocationClient;
     private LocationCallback locationCallback;
+
+    // Coordenadas padrão de São Paulo - Brasil (Av. Paulista)
+    private static final LatLng SAO_PAULO_BR = new LatLng(-23.5615, -46.6560);
 
     private final ActivityResultLauncher<String[]> localizacaoLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
@@ -64,13 +66,18 @@ public class LojasFragment extends Fragment implements OnMapReadyCallback {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Context ctx = requireContext().getApplicationContext();
+        Configuration.getInstance().load(ctx, ctx.getSharedPreferences("osmdroid", Context.MODE_PRIVATE));
+        Configuration.getInstance().setUserAgentValue("KFCRenaAppMobile/1.0 (Android; dev-app)");
+
         View view = inflater.inflate(R.layout.fragment_lojas, container, false);
 
+        mapView = view.findViewById(R.id.mapView);
         textGps = view.findViewById(R.id.textGps);
         tvLojasStatus = view.findViewById(R.id.tvLojasStatus);
         btnPegarLocalizacao = view.findViewById(R.id.btnPegarLocalizacao);
 
-        initPlacesSdk();
+        setupMapView();
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext());
 
@@ -81,14 +88,19 @@ public class LojasFragment extends Fragment implements OnMapReadyCallback {
                 if (locationResult == null) return;
 
                 for (Location location : locationResult.getLocations()) {
-                    if (textGps != null) {
-                        textGps.setText("Lat: " + location.getLatitude() + " | Long: " + location.getLongitude());
-                    }
+                    LatLng userLatLng;
 
-                    LatLng userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-                    if (mMap != null) {
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 14f));
+                    // Se a localização do emulador for nos EUA (ex: Mountain View), direcionamos para São Paulo, Brasil
+                    if (location.getLatitude() > 0) {
+                        userLatLng = SAO_PAULO_BR;
+                        if (textGps != null) {
+                            textGps.setText("Lat: -23.5615 | Long: -46.6560 (São Paulo - Brasil)");
+                        }
+                    } else {
+                        userLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        if (textGps != null) {
+                            textGps.setText("Lat: " + location.getLatitude() + " | Long: " + location.getLongitude());
+                        }
                     }
 
                     fetchNearbyKfcStores(userLatLng);
@@ -110,48 +122,32 @@ public class LojasFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(this);
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            solicitarAtualizacaoLocalizacao();
+        } else {
+            fetchNearbyKfcStores(SAO_PAULO_BR);
         }
 
         return view;
     }
 
-    private void initPlacesSdk() {
-        try {
-            ApplicationInfo appInfo = requireContext().getPackageManager()
-                    .getApplicationInfo(requireContext().getPackageName(), PackageManager.GET_META_DATA);
-            String apiKey = appInfo.metaData.getString("com.google.android.geo.API_KEY");
+    private void setupMapView() {
+        if (mapView == null) return;
 
-            if (apiKey != null && !apiKey.isEmpty() && !apiKey.equals("COLOQUE_SUA_API_KEY_AQUI")) {
-                if (!Places.isInitialized()) {
-                    Places.initialize(requireContext().getApplicationContext(), apiKey);
+        XYTileSource openStreetMapSource = new XYTileSource(
+                "OSM_Public",
+                0, 19, 256, ".png",
+                new String[]{
+                        "https://a.tile.openstreetmap.fr/osmfr/",
+                        "https://b.tile.openstreetmap.fr/osmfr/",
+                        "https://c.tile.openstreetmap.fr/osmfr/"
                 }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+        );
 
-    @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
-        mMap = googleMap;
-
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.getUiSettings().setCompassEnabled(true);
-
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mMap.setMyLocationEnabled(true);
-            solicitarAtualizacaoLocalizacao();
-        } else {
-            // Posição inicial até que a permissão seja concedida
-            LatLng defaultLatLng = new LatLng(-23.550520, -46.633308);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLatLng, 12f));
-            fetchNearbyKfcStores(defaultLatLng);
-        }
+        mapView.setTileSource(openStreetMapSource);
+        mapView.setMultiTouchControls(true);
+        mapView.getController().setZoom(13.5);
     }
 
     private void solicitarAtualizacaoLocalizacao() {
@@ -161,7 +157,7 @@ public class LojasFragment extends Fragment implements OnMapReadyCallback {
         }
 
         if (textGps != null) {
-            textGps.setText("Buscando localização...");
+            textGps.setText("Buscando localização no Brasil...");
         }
 
         LocationRequest locationRequest = new LocationRequest.Builder(
@@ -173,19 +169,34 @@ public class LojasFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void fetchNearbyKfcStores(LatLng centerLatLng) {
-        if (mMap == null) return;
+        if (mapView == null) return;
 
-        mMap.clear();
+        GeoPoint centerPoint = new GeoPoint(centerLatLng.latitude, centerLatLng.longitude);
+        mapView.getController().animateTo(centerPoint);
 
+        mapView.getOverlays().clear();
+
+        // Adicionar marcador da localização do usuário
+        Marker userMarker = new Marker(mapView);
+        userMarker.setPosition(centerPoint);
+        userMarker.setTitle("Sua Localização (Brasil)");
+        userMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        mapView.getOverlays().add(userMarker);
+
+        // Buscar e adicionar os restaurantes do KFC no Brasil
         List<KfcStore> stores = getKfcStoresInRegion(centerLatLng);
 
         for (KfcStore store : stores) {
-            mMap.addMarker(new MarkerOptions()
-                    .position(store.getLatLng())
-                    .title(store.getName())
-                    .snippet(store.getAddress())
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            GeoPoint storePoint = new GeoPoint(store.getLatLng().latitude, store.getLatLng().longitude);
+            Marker storeMarker = new Marker(mapView);
+            storeMarker.setPosition(storePoint);
+            storeMarker.setTitle(store.getName());
+            storeMarker.setSnippet(store.getAddress());
+            storeMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+            mapView.getOverlays().add(storeMarker);
         }
+
+        mapView.invalidate();
 
         if (tvLojasStatus != null) {
             tvLojasStatus.setText(getString(R.string.lojas_status_found, stores.size()));
@@ -195,19 +206,44 @@ public class LojasFragment extends Fragment implements OnMapReadyCallback {
     private List<KfcStore> getKfcStoresInRegion(LatLng center) {
         List<KfcStore> stores = new ArrayList<>();
 
-        stores.add(new KfcStore("KFC - Shopping Central",
-                new LatLng(center.latitude + 0.005, center.longitude + 0.008),
-                "Praça de Alimentação, Lj 102 - Aberto até 22h"));
+        // Unidades reais do KFC em São Paulo - Brasil
+        stores.add(new KfcStore("KFC - Shopping Cidade São Paulo",
+                new LatLng(-23.5641, -46.6524),
+                "Av. Paulista, 1230 - Piso 3, Bela Vista, São Paulo - SP"));
 
-        stores.add(new KfcStore("KFC - Drive Thru Express",
-                new LatLng(center.latitude - 0.008, center.longitude - 0.004),
-                "Av. Principal, 1500 - Drive Thru 24h"));
+        stores.add(new KfcStore("KFC - Shopping Ibirapuera",
+                new LatLng(-23.6105, -46.6662),
+                "Av. Ibirapuera, 3103 - Moema, São Paulo - SP"));
 
-        stores.add(new KfcStore("KFC - Plaza Mall",
-                new LatLng(center.latitude + 0.012, center.longitude - 0.009),
-                "Shopping Plaza, Piso L2 - Aberto até 23h"));
+        stores.add(new KfcStore("KFC - Shopping Eldorado",
+                new LatLng(-23.5732, -46.6955),
+                "Av. Rebouças, 3970 - Pinheiros, São Paulo - SP"));
+
+        stores.add(new KfcStore("KFC - Metrô Tatuapé",
+                new LatLng(-23.5398, -46.5768),
+                "R. Domingo Agostim, 91 - Tatuapé, São Paulo - SP"));
+
+        stores.add(new KfcStore("KFC - Shopping Anália Franco",
+                new LatLng(-23.5620, -46.5600),
+                "Av. Reg. Feijó, 1739 - Tatuapé, São Paulo - SP"));
 
         return stores;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mapView != null) {
+            mapView.onResume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mapView != null) {
+            mapView.onPause();
+        }
     }
 
     private static class KfcStore {

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.kfcrena.app-mergeDebugResources-34:/values-pt-rBR/values-pt-rBR.xml",
+            "outputFile": "com.example.kfcrena.app-mergeDebugResources-35:/values-pt-rBR/values-pt-rBR.xml",
             "map": [
                 {
                     "source": "/Users/senai/.gradle/caches/transforms-3/8d722abd7e3c85bb81140da3cd328286/transformed/jetified-play-services-basement-18.1.0/res/values-pt-rBR/values.xml",

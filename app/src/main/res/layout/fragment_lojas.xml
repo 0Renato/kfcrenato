@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/surface_background">
 
-    <!-- Fragmento do Google Maps -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <!-- OpenStreetMap (OSMDroid) View -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".LojasFragment" />
+        android:layout_height="match_parent" />
 
     <!-- Card informativo com botão e coordenadas GPS -->
     <com.google.android.material.card.MaterialCardView

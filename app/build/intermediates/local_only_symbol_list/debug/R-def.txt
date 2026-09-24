@@ -58,7 +58,7 @@ id imgItem
 id imgProduct
 id layoutCouponCode
 id layoutDiscountRow
-id map
+id mapView
 id nav_cardapio
 id nav_carrinho
 id nav_cupons

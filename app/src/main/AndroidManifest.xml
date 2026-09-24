@@ -34,7 +34,7 @@
         <!-- Meta-data da API Key do Google Maps / Places -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="COLOQUE_SUA_API_KEY_AQUI" />
+            android:value="AIzaSyBF9u0ceJp8inh0M6hf0X4rg6hCupN98oI" />
 
     </application>
 
